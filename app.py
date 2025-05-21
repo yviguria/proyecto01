@@ -1,119 +1,67 @@
 import streamlit as st
+import random
+import time
 
-st.set_page_config(page_title="Aprende Python - Bucles y Condicionales", layout="centered")
+# Título de la página
+st.title("Aprendiendo Python: Bucles y Condicionales")
+st.write("En esta página aprenderás sobre `while`, `for` e `if` en Python.")
 
-st.title("🐍 Aprende Python: `while`, `for` e `if`")
-st.markdown("""
-Bienvenido a esta mini lección interactiva. A continuación se explica el uso de los principales constructores de control en Python:
-""")
+# Sección informativa
+st.header("🔍 Conceptos Claves")
 
-with st.expander("🔄 Bucle `while`"):
-    st.code("""
-i = 0
-while i < 5:
-    print(i)
-    i += 1
-""", language='python')
-    st.markdown("El bucle `while` repite un bloque mientras una condición sea verdadera.")
+st.subheader("Bucles `while`")
+st.write("El bucle `while` ejecuta un bloque de código mientras una condición sea verdadera.")
+st.code("""
+contador = 0
+while contador < 5:
+    print("Contador:", contador)
+    contador += 1
+""", language="python")
 
-with st.expander("🔁 Bucle `for`"):
-    st.code("""
+st.subheader("Bucles `for`")
+st.write("El bucle `for` se usa para iterar sobre secuencias como listas o rangos.")
+st.code("""
 for i in range(5):
-    print(i)
-""", language='python')
-    st.markdown("El bucle `for` itera sobre una secuencia como `range`, listas, etc.")
+    print("Iteración número:", i)
+""", language="python")
 
-with st.expander("✅ Condicional `if`"):
-    st.code("""
-x = 10
-if x > 5:
-    print("Mayor que 5")
-elif x == 5:
-    print("Es igual a 5")
+st.subheader("Condicionales `if`")
+st.write("Las estructuras `if` permiten tomar decisiones en el código.")
+st.code("""
+edad = 18
+if edad >= 18:
+    print("Eres mayor de edad")
 else:
-    print("Menor que 5")
-""", language='python')
-    st.markdown("`if`, `elif` y `else` permiten tomar decisiones basadas en condiciones.")
+    print("Eres menor de edad")
+""", language="python")
 
----
+# Cuestionario interactivo
+st.header("📋 Cuestionario")
 
-### 📝 Quiz Interactivo
-
-st.header("🧠 Quiz: ¿Cuánto sabes de Python?")
-st.markdown("Selecciona la respuesta correcta en cada pregunta:")
-
-# Preguntas y respuestas
-questions = [
-    {
-        "question": "¿Cuál es la salida de: `i=0; while i<3: print(i); i+=1`?",
-        "options": ["0 1 2", "1 2 3", "0 1 2 3"],
-        "answer": "0 1 2"
-    },
-    {
-        "question": "¿Qué función se usa comúnmente con `for` para iterar un número fijo de veces?",
-        "options": ["range()", "enumerate()", "repeat()"],
-        "answer": "range()"
-    },
-    {
-        "question": "¿Cuál es la sintaxis correcta de un `if`?",
-        "options": ["if x > 5 then:", "if (x > 5):", "if x > 5:"],
-        "answer": "if x > 5:"
-    },
-    {
-        "question": "¿Qué imprime: `for i in range(2): print(i)`?",
-        "options": ["0 1", "1 2", "0 1 2"],
-        "answer": "0 1"
-    },
-    {
-        "question": "¿Qué operador se usa para 'igual a' en condiciones?",
-        "options": ["=", "==", "==="],
-        "answer": "=="
-    },
-    {
-        "question": "¿Qué hace `i += 1`?",
-        "options": ["Incrementa i en 1", "Asigna 1 a i", "Decrementa i en 1"],
-        "answer": "Incrementa i en 1"
-    },
-    {
-        "question": "¿Cuándo se usa `else`?",
-        "options": ["Cuando la condición es falsa", "Cuando es verdadera", "Cuando empieza un bucle"],
-        "answer": "Cuando la condición es falsa"
-    },
-    {
-        "question": "¿Qué palabra se usa para romper un bucle antes de que termine?",
-        "options": ["exit", "stop", "break"],
-        "answer": "break"
-    },
-    {
-        "question": "¿Cuál de estos es un bucle infinito?",
-        "options": ["while True:", "for i in range(10):", "if True:"],
-        "answer": "while True:"
-    },
-    {
-        "question": "¿Cuál es la salida de `if 3 > 2: print('Sí')`?",
-        "options": ["Sí", "No", "Error"],
-        "answer": "Sí"
-    }
+preguntas = [
+    ("¿Cuál es la sintaxis correcta para un bucle `while` en Python?", ["while condicion:", "for i in range()", "if condicion:", "print()"], "while condicion:"),
+    ("¿Para qué se usa el bucle `for`?", ["Ejecutar código una sola vez", "Iterar sobre secuencias", "Tomar decisiones", "Declarar variables"], "Iterar sobre secuencias"),
+    ("¿Cuál es la estructura básica de un `if` en Python?", ["if condicion:", "for condicion in range()", "print(condicion)", "while condicion:"], "if condicion:"),
+    ("¿Cómo se detiene un bucle `while`?", ["Con `break`", "Con `return`", "Con `stop`", "No se puede detener"], "Con `break`"),
+    ("¿Cuál de estas es una estructura condicional?", ["while", "for", "if", "range"], "if"),
+    ("¿Qué operador se usa para comparar igualdad?", ["==", "=", "!=", "<>"], "=="),
+    ("¿Cuál de estas opciones genera un bucle infinito?", ["while True:", "for i in range(10):", "if x > 10:", "print('Hola')"], "while True:"),
+    ("¿Qué hace el `else` en un `if`?", ["Define variables", "Se ejecuta si `if` es falso", "Imprime resultados", "Crea un bucle"], "Se ejecuta si `if` es falso"),
+    ("¿Qué palabra clave usamos para salir de un bucle `for`?", ["stop", "exit", "break", "pass"], "break"),
+    ("¿Cuál es la mejor estructura para recorrer una lista?", ["while", "for", "if", "print"], "for"),
 ]
 
-# Estado de respuestas
-user_answers = []
-score = 0
+# Diccionario para respuestas del usuario
+respuestas = {}
 
-for i, q in enumerate(questions):
-    st.subheader(f"Pregunta {i + 1}")
-    user_answer = st.radio(q["question"], q["options"], key=f"q{i}")
-    user_answers.append(user_answer)
+for idx, (pregunta, opciones, respuesta_correcta) in enumerate(preguntas):
+    respuestas[idx] = st.radio(pregunta, opciones)
 
-# Verificación de puntaje
-if st.button("✅ Verificar puntaje"):
-    score = sum(user_answers[i] == questions[i]["answer"] for i in range(len(questions)))
-    st.success(f"Puntaje: {score} / {len(questions)}")
+if st.button("📝 Calcular puntaje"):
+    puntaje = sum([1 for idx, (_, _, respuesta_correcta) in enumerate(preguntas) if respuestas[idx] == respuesta_correcta])
+    st.write(f"Tu puntaje es: {puntaje}/10")
 
-    if score == len(questions):
+    # Mostrar animación de globos si el puntaje es perfecto
+    if puntaje == 10:
         st.balloons()
-        st.markdown("🎉 ¡Excelente! Has respondido todo correctamente.")
-    elif score >= 7:
-        st.markdown("👍 ¡Muy bien! Aún puedes mejorar un poco.")
-    else:
-        st.markdown("📘 Sigue practicando para mejorar tu comprensión.")
+
